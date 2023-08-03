@@ -107,6 +107,7 @@ func NewIntegrationPipelineRun(prefix, namespace string, integrationTestScenario
 					Params:   resolverParams,
 				},
 			},
+			Workspaces: integrationTestScenario.Spec.Workspaces,
 		},
 	}
 	return &IntegrationPipelineRun{pipelineRun}

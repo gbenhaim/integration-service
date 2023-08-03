@@ -23,6 +23,7 @@ package v1beta1
 
 import (
 	"github.com/redhat-appstudio/application-api/api/v1alpha1"
+	pipelinev1beta1 "github.com/tektoncd/pipeline/pkg/apis/pipeline/v1beta1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
@@ -102,6 +103,13 @@ func (in *IntegrationTestScenarioSpec) DeepCopyInto(out *IntegrationTestScenario
 		in, out := &in.Contexts, &out.Contexts
 		*out = make([]TestContext, len(*in))
 		copy(*out, *in)
+	}
+	if in.Workspaces != nil {
+		in, out := &in.Workspaces, &out.Workspaces
+		*out = make([]pipelinev1beta1.WorkspaceBinding, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
 	}
 }
 

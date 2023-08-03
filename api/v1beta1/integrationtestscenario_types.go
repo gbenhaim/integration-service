@@ -18,6 +18,7 @@ package v1beta1
 
 import (
 	applicationapiv1alpha1 "github.com/redhat-appstudio/application-api/api/v1alpha1"
+	tektonv1beta1 "github.com/tektoncd/pipeline/pkg/apis/pipeline/v1beta1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -36,6 +37,8 @@ type IntegrationTestScenarioSpec struct {
 	Environment TestEnvironment `json:"environment,omitempty"`
 	// Contexts where this IntegrationTestScenario can be applied
 	Contexts []TestContext `json:"contexts,omitempty"`
+	// Tekton Workspace binding that will be added to the generated pipelinerun
+	Workspaces []tektonv1beta1.WorkspaceBinding `json:"workspaces,omitempty"`
 }
 
 // IntegrationTestScenarioStatus defines the observed state of IntegrationTestScenario
